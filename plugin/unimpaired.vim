@@ -1,14 +1,13 @@
 " unimpaired.vim - Pairs of handy bracket mappings
-" Maintainer:   Tim Pope <vimNOSPAM@tpope.org>
+" Maintainer:   Tim Pope <http://tpo.pe/>
 " Version:      1.1
+" TODO: use :try
+" TODO: simpler modeline
 
 if exists("g:loaded_unimpaired") || &cp || v:version < 700
   finish
 endif
 let g:loaded_unimpaired = 1
-
-let s:cpo_save = &cpo
-set cpo&vim
 
 " Next and previous {{{1
 
@@ -85,8 +84,8 @@ nnoremap <silent> <Plug>unimpairedBlankDown :<C-U>put =repeat(nr2char(10),v:coun
 nmap [<Space> <Plug>unimpairedBlankUp
 nmap ]<Space> <Plug>unimpairedBlankDown
 
-nnoremap <silent> <Plug>unimpairedMoveUp   :<C-U>exe 'norm m`'<Bar>exe 'move--'.v:count1<CR>``
-nnoremap <silent> <Plug>unimpairedMoveDown :<C-U>exe 'norm m`'<Bar>exe 'move+'.v:count1<CR>``
+nnoremap <silent> <Plug>unimpairedMoveUp   :<C-U>exe 'norm! m`'<Bar>exe 'move--'.v:count1<Bar>norm! ``<CR>
+nnoremap <silent> <Plug>unimpairedMoveDown :<C-U>exe 'norm! m`'<Bar>exe 'move+'.v:count1<Bar>norm! ``<CR>
 xnoremap <silent> <Plug>unimpairedMoveUp   :<C-U>exe 'norm m`'<Bar>exe '''<,''>move--'.v:count1<CR>``
 xnoremap <silent> <Plug>unimpairedMoveDown :<C-U>exe 'norm m`'<Bar>exe '''<,''>move''>+'.v:count1<CR>``
 
@@ -270,6 +269,4 @@ call s:MapTransform('XmlDecode',']x')
 
 " }}}1
 
-let &cpo = s:cpo_save
-
-" vim:set ft=vim ts=8 sw=2 sts=2:
+" vim:set sw=2 sts=2:
