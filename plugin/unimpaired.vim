@@ -74,44 +74,19 @@ nnoremap <silent> <Plug>unimpairedOPrevious :<C-U>edit `=<SID>FileByOffset(-v:co
 nmap ]o <Plug>unimpairedONext
 nmap [o <Plug>unimpairedOPrevious
 
-nmap [, :call search('^[<=>]\{7\}','bW')<CR>
-nmap ], :call search('^[<=>]\{7\}','W')<CR>
-omap [, V:call search('^[<=>]\{7\}','bW')<CR>
-omap ], V:call search('^[<=>]\{7\}','W')<CR>
-xmap [, :<C-U>exe 'norm! gv'<Bar>call search('^[<=>]\{7\}','bW')<CR>
-xmap ], :<C-U>exe 'norm! gv'<Bar>call search('^[<=>]\{7\}','W')<CR>
-nmap [< :call search('^<<<<<<<','bW')<CR>
-nmap [= :call search('^=======','bW')<CR>
-nmap [> :call search('^>>>>>>>','bW')<CR>
-nmap ]< :call search('^<<<<<<<','W')<CR>
-nmap ]= :call search('^=======','W')<CR>
-nmap ]> :call search('^>>>>>>>','W')<CR>
-xmap [< :<C-U>exe 'norm! gv'<Bar>call search('^<<<<<<<','bW')<CR>
-xmap [= :<C-U>exe 'norm! gv'<Bar>call search('^=======','bW')<CR>
-xmap [> :<C-U>exe 'norm! gv'<Bar>call search('^>>>>>>>','bW')<CR>
-xmap ]< :<C-U>exe 'norm! gv'<Bar>call search('^<<<<<<<','W')<CR>
-xmap ]= :<C-U>exe 'norm! gv'<Bar>call search('^=======','W')<CR>
-xmap ]> :<C-U>exe 'norm! gv'<Bar>call search('^>>>>>>>','W')<CR>
-omap [< V:call search('^<<<<<<<','bW')<CR>
-omap [= V:call search('^=======','bW')<CR>
-omap [> V:call search('^>>>>>>>','bW')<CR>
-omap ]< V:call search('^<<<<<<<','W')<CR>
-omap ]= V:call search('^=======','W')<CR>
-omap ]> V:call search('^>>>>>>>','W')<CR>
-
 " }}}1
 " Line operations {{{1
 
 function! s:BlankUp(count) abort
   put!=repeat(nr2char(10), a:count)
   ']+1
-  call repeat#set("\<Plug>unimpairedBlankUp", a:count)
+  silent! call repeat#set("\<Plug>unimpairedBlankUp", a:count)
 endfunction
 
 function! s:BlankDown(count) abort
   put =repeat(nr2char(10), a:count)
   '[-1
-  call repeat#set("\<Plug>unimpairedBlankDown", a:count)
+  silent! call repeat#set("\<Plug>unimpairedBlankDown", a:count)
 endfunction
 
 nnoremap <silent> <Plug>unimpairedBlankUp   :<C-U>call <SID>BlankUp(v:count1)<CR>
@@ -124,7 +99,7 @@ function! s:Move(cmd, count, map) abort
   normal! m`
   exe 'move'.a:cmd.a:count
   norm! ``
-  call repeat#set("\<Plug>unimpairedMove".a:map, a:count)
+  silent! call repeat#set("\<Plug>unimpairedMove".a:map, a:count)
 endfunction
 
 nnoremap <silent> <Plug>unimpairedMoveUp   :<C-U>call <SID>Move('--',v:count1,'Up')<CR>
